@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Послуги консалтингової компанії Pragma — стратегія, фінанси, цифрова трансформація та управління змінами." />
+  <title>Послуги — Pragma</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Дозволяємо кліки по nav-посиланнях (style.css забороняє всі a) */
+    nav span[data-href] { cursor: pointer; }
+
+    .page-hero {
+      padding: 13rem var(--gap) 5rem;
+      max-width: 860px;
+    }
+    .page-hero h1 {
+      margin: .5rem 0 1.5rem;
+    }
+    .page-hero p {
+      font-size: 1.05rem;
+      max-width: 540px;
+    }
+
+    /* ─── Сітка карток ─── */
+    .srv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+    }
+    .srv-card {
+      padding: 3.5rem 3rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      transition: background .3s;
+    }
+    .srv-card:nth-child(even) { border-right: none; }
+    .srv-card:hover { background: rgba(232,228,220,.03); }
+    .srv-card .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .78rem;
+      letter-spacing: .16em;
+      color: var(--dim);
+      display: block;
+      margin-bottom: 1.4rem;
+    }
+    .srv-card h2 {
+      margin-bottom: .9rem;
+    }
+    .srv-card > p {
+      margin-bottom: 1.4rem;
+      max-width: 100%;
+    }
+    .srv-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .srv-card ul li {
+      font-size: .88rem;
+      color: var(--muted);
+      padding: .45rem 0;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: .7rem;
+    }
+    .srv-card ul li::before {
+      content: '→';
+      opacity: .4;
+      flex-shrink: 0;
+    }
+
+    /* ─── Процес ─── */
+    .process {
+      padding: 6rem var(--gap);
+      border-top: 1px solid var(--line);
+    }
+    .process h2 { margin-bottom: 3.5rem; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+    }
+    .step { border-top: 1px solid var(--line); padding-top: 1.5rem; }
+    .step-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--dim);
+      display: block;
+      margin-bottom: .7rem;
+    }
+    .step h3 { font-size: 1.15rem; margin-bottom: .6rem; }
+    .step p  { font-size: .88rem; max-width: 100%; }
+
+    /* ─── CTA ─── */
+    .srv-cta {
+      padding: 5.5rem var(--gap);
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .srv-cta h2 { margin: 0; max-width: 480px; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 991px) {
+      .srv-grid { grid-template-columns: 1fr; }
+      .srv-card { border-right: none; }
+      .steps { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 680px) {
+      .steps { grid-template-columns: 1fr; }
+      .srv-cta { flex-direction: column; align-items: flex-start; }
+      .page-hero { padding: 10rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <nav>
+    <span class="logo" onclick="window.location.href='index.html'">Pragma</span>
+    <ul class="nav-list">
+
+      <li><span onclick="window.location.href='index.html#about'">Про нас</span></li>
+
+      <li class="has-sub nav-active">
+        <span>Послуги ▾</span>
+        <ul class="submenu">
+          <li class="has-sub">
+            <span>Стратегія ▸</span>
+            <ul class="submenu submenu--right">
+              <li><span onclick="window.location.href='services.html#strategy'">Аналіз ринку</span></li>
+              <li><span onclick="window.location.href='services.html#strategy'">Довгостроковий план</span></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <span>Фінанси ▸</span>
+            <ul class="submenu submenu--right">
+              <li><span onclick="window.location.href='services.html#finance'">Моделювання сценаріїв</span></li>
+              <li><span onclick="window.location.href='services.html#finance'">Оцінка бізнесу</span></li>
+            </ul>
+          </li>
+          <li><span onclick="window.location.href='services.html#digital'">Цифрова трансформація</span></li>
+          <li><span onclick="window.location.href='services.html#change'">Управління змінами</span></li>
+        </ul>
+      </li>
+
+      <li><span onclick="window.location.href='index.html#projects'">Проєкти</span></li>
+      <li><span onclick="window.location.href='index.html#calculator'">Калькулятор</span></li>
+      <li><span onclick="window.location.href='contacts.html'">Контакти</span></li>
+
+      <li id="navAuthItem">
+        <span class="nav-auth-btn" id="navAuthBtn" onclick="window.location.href='index.html'">Увійти</span>
+      </li>
+      <li id="navUserItem" style="display:none;">
+        <div class="user-badge" id="userBadge">
+          <div class="avatar" id="userAvatar">—</div>
+          <span id="userNameLabel">—</span>
+          <span class="logout-btn" id="logoutBtn">Вийти</span>
+        </div>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ─── HERO ─── -->
+  <section class="page-hero">
+    <p class="eyebrow">Наші послуги</p>
+    <h1>Що ми робимо</h1>
+    <p>Pragma надає повний спектр консалтингових послуг — від стратегічного аналізу до впровадження цифрових рішень. Кожна рекомендація базується на глибокому розумінні вашого бізнесу.</p>
+  </section>
+
+  <!-- ─── КАРТКИ ПОСЛУГ ─── -->
+  <section class="srv-grid" aria-label="Перелік послуг">
+
+    <article class="srv-card" id="strategy">
+      <span class="num">01</span>
+      <h2>Стратегічний консалтинг</h2>
+      <p>Допомагаємо компаніям визначити вектор розвитку, сформулювати довгострокові цілі та знайти конкурентну перевагу на ринку.</p>
+      <ul>
+        <li>Аналіз ринку та конкурентного середовища</li>
+        <li>Розробка довгострокового стратегічного плану</li>
+        <li>Сценарне планування та аналіз ризиків</li>
+        <li>Вибір напрямків для зростання</li>
+      </ul>
+    </article>
+
+    <article class="srv-card" id="finance">
+      <span class="num">02</span>
+      <h2>Фінансовий консалтинг</h2>
+      <p>Забезпечуємо прозорість фінансової картини бізнесу та допомагаємо приймати обґрунтовані інвестиційні рішення.</p>
+      <ul>
+        <li>Фінансове моделювання та прогнозування</li>
+        <li>Оцінка бізнесу та M&amp;A-консультації</li>
+        <li>Оптимізація структури капіталу</li>
+        <li>Підготовка до залучення інвестицій</li>
+      </ul>
+    </article>
+
+    <article class="srv-card" id="digital">
+      <span class="num">03</span>
+      <h2>Цифрова трансформація</h2>
+      <p>Супроводжуємо компанії на шляху від традиційних процесів до цифрових — без зупинки бізнесу та зайвого стресу.</p>
+      <ul>
+        <li>Аудит поточних процесів та ІТ-ландшафту</li>
+        <li>Розробка дорожньої карти трансформації</li>
+        <li>Підбір та впровадження технологічних рішень</li>
+        <li>Навчання команди та управління змінами</li>
+      </ul>
+    </article>
+
+    <article class="srv-card" id="change">
+      <span class="num">04</span>
+      <h2>Управління змінами</h2>
+      <p>Допомагаємо організаціям проходити через трансформації — структурні, культурні та операційні — зберігаючи ефективність команди.</p>
+      <ul>
+        <li>Діагностика організаційної культури</li>
+        <li>Розробка програм організаційних змін</li>
+        <li>Коучинг керівників та команд</li>
+        <li>Вимірювання ефективності перетворень</li>
+      </ul>
+    </article>
+
+    <article class="srv-card">
+      <span class="num">05</span>
+      <h2>Операційна ефективність</h2>
+      <p>Знаходимо вузькі місця в операційній діяльності та впроваджуємо рішення, що підвищують продуктивність і знижують витрати.</p>
+      <ul>
+        <li>Картування та оптимізація процесів</li>
+        <li>Впровадження Lean та Agile-підходів</li>
+        <li>Автоматизація рутинних операцій</li>
+        <li>KPI-системи та дашборди ефективності</li>
+      </ul>
+    </article>
+
+    <article class="srv-card">
+      <span class="num">06</span>
+      <h2>HR-консалтинг</h2>
+      <p>Будуємо організації, де люди хочуть працювати: від стратегії найму до систем утримання та розвитку талантів.</p>
+      <ul>
+        <li>Аудит HR-процесів та корпоративної культури</li>
+        <li>Побудова системи оцінювання персоналу</li>
+        <li>Розробка програм лояльності та розвитку</li>
+        <li>Формування управлінського резерву</li>
+      </ul>
+    </article>
+
+  </section>
+
+  <!-- ─── ПРОЦЕС РОБОТИ ─── -->
+  <section class="process">
+    <p class="eyebrow">Як ми працюємо</p>
+    <h2>Чотири кроки до результату</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <h3>Діагностика</h3>
+        <p>Занурюємось у бізнес клієнта: проводимо інтерв'ю, аналізуємо дані, вивчаємо ринок.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <h3>Стратегія</h3>
+        <p>Формуємо ясну картину: де знаходиться бізнес зараз і яким шляхом рухатись далі.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <h3>Впровадження</h3>
+        <p>Не залишаємо зі стратегією наодинці — супроводжуємо реалізацію кожного кроку.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">04</span>
+        <h3>Вимірювання</h3>
+        <p>Фіксуємо результат у цифрах. Кожен проєкт завершується звітом з досягнутими KPI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="srv-cta">
+    <h2>Готові обговорити ваше завдання?</h2>
+    <span class="btn" onclick="window.location.href='contacts.html'"><span>Написати нам</span></span>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>&copy; 2025 Pragma. Всі права захищено.</p>
+</footer>
+
+<script>
+  /* ── Підменю (mouseenter / mouseleave — як у script.js) ── */
+  document.querySelectorAll('.has-sub').forEach(function(item) {
+    var submenu = item.querySelector('.submenu');
+    if (!submenu) return;
+    item.addEventListener('mouseenter', function() {
+      item.parentElement.querySelectorAll('.has-sub > .submenu.open').forEach(function(s) {
+        if (s !== submenu) s.classList.remove('open');
+      });
+      submenu.style.display = 'block';
+      requestAnimationFrame(function() { submenu.classList.add('open'); });
+    });
+    item.addEventListener('mouseleave', function() {
+      submenu.classList.remove('open');
+      setTimeout(function() {
+        if (!submenu.classList.contains('open')) submenu.style.display = 'none';
+      }, 240);
+    });
+  });
+
+  /* ── Відновлення сесії з localStorage ── */
+  (function() {
+    var stored = JSON.parse(localStorage.getItem('pragmaUser') || 'null');
+    if (!stored) return;
+    var authItem  = document.getElementById('navAuthItem');
+    var userItem  = document.getElementById('navUserItem');
+    var avatar    = document.getElementById('userAvatar');
+    var nameLabel = document.getElementById('userNameLabel');
+    if (authItem)  authItem.style.display  = 'none';
+    if (userItem)  userItem.style.display  = 'list-item';
+    if (avatar)    avatar.textContent = (stored.firstName || '?')[0].toUpperCase() + (stored.lastName || '')[0].toUpperCase();
+    if (nameLabel) nameLabel.textContent = stored.firstName + (stored.lastName ? ' ' + stored.lastName : '');
+  })();
+
+  /* ── Вийти ── */
+  var logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.onclick = function() {
+      document.getElementById('navAuthItem').style.display = 'list-item';
+      document.getElementById('navUserItem').style.display = 'none';
+    };
+  }
+</script>
+
+</body>
+</html>

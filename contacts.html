@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Зв'яжіться з Pragma — заповніть форму або напишіть на email. Відповідаємо протягом одного робочого дня." />
+  <title>Контакти — Pragma</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── скидаємо відступи секцій під нашу сторінку ── */
+    main > section,
+    main > div {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    /* ─── Hero ─── */
+    .page-hero {
+      padding-top: 8rem;
+      padding-bottom: 3rem;
+      border-bottom: none;
+    }
+    .page-hero h1 {
+      margin: .4rem 0 .8rem;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+    }
+    .page-hero p {
+      font-size: .95rem;
+      max-width: 460px;
+    }
+
+    /* ─── Два стовпці ─── */
+    .contacts-wrap {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    /* ─── Ліва панель ─── */
+    .c-info {
+      padding: 2.5rem 2rem 2.5rem 0;
+      border-right: 1px solid var(--line);
+    }
+    .c-info h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1.6rem;
+    }
+    .info-block { margin-bottom: 1.4rem; }
+    .info-label {
+      display: block;
+      font-size: .68rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: .3rem;
+    }
+    .info-block p,
+    .info-block span {
+      font-size: .88rem;
+      color: var(--muted);
+      display: block;
+      line-height: 1.55;
+      max-width: 100%;
+    }
+    .info-block span { cursor: pointer; transition: color .2s; }
+    .info-block span:hover { color: var(--text); }
+    .c-divider { height: 1px; background: var(--line); margin: 1.2rem 0; }
+    .hours dt {
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-top: .8rem;
+    }
+    .hours dd { margin: .15rem 0 0; font-size: .88rem; color: var(--muted); }
+
+    /* ─── Права панель — форма ─── */
+    .c-form-wrap {
+      padding: 2.5rem 0 2.5rem 2rem;
+    }
+    .c-form-wrap h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1.6rem;
+    }
+
+    /* ─── Форма ─── */
+    .c-form { display: grid; gap: 1.1rem; }
+    .f-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+
+    .field { display: flex; flex-direction: column; gap: .35rem; }
+    .field label {
+      font-size: .68rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: .45rem 0;
+      font-family: inherit;
+      font-size: .9rem;
+      color: var(--text);
+      outline: none;
+      width: 100%;
+      transition: border-color .25s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-bottom-color: var(--muted); }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--dim); }
+    .field select option { background: #111110; color: var(--text); }
+    .field textarea { resize: vertical; min-height: 90px; }
+
+    .field-check {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      cursor: pointer;
+    }
+    .field-check input[type="checkbox"] {
+      width: .9rem;
+      height: .9rem;
+      flex-shrink: 0;
+      margin-top: .2rem;
+      accent-color: var(--text);
+      cursor: pointer;
+    }
+    .field-check span {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .form-bottom {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .form-bottom .btn {
+      margin-top: 0;
+      cursor: pointer;
+      border: 1px solid var(--dim);
+      background: none;
+      font-family: inherit;
+      font-size: inherit;
+    }
+    #formSuccess {
+      display: none;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* ─── Адреса ─── */
+    .address-section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      border-top: 1px solid var(--line);
+    }
+    .address-section h2 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+    .address-map {
+      width: 100%;
+      height: 260px;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .8rem;
+      color: var(--dim);
+      font-size: .82rem;
+      letter-spacing: .06em;
+    }
+    .address-map svg { opacity: .2; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 991px) {
+      .contacts-wrap { grid-template-columns: 1fr; }
+      .c-info {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 2rem 0;
+      }
+      .c-form-wrap { padding: 2rem 0; }
+    }
+    @media (max-width: 680px) {
+      .f-row { grid-template-columns: 1fr; }
+      .page-hero { padding-top: 6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <nav>
+    <span class="logo" onclick="window.location.href='index.html'">Pragma</span>
+    <ul class="nav-list">
+
+      <li><span onclick="window.location.href='index.html#about'">Про нас</span></li>
+
+      <li class="has-sub">
+        <span>Послуги ▾</span>
+        <ul class="submenu">
+          <li class="has-sub">
+            <span>Стратегія ▸</span>
+            <ul class="submenu submenu--right">
+              <li><span onclick="window.location.href='services.html#strategy'">Аналіз ринку</span></li>
+              <li><span onclick="window.location.href='services.html#strategy'">Довгостроковий план</span></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <span>Фінанси ▸</span>
+            <ul class="submenu submenu--right">
+              <li><span onclick="window.location.href='services.html#finance'">Моделювання сценаріїв</span></li>
+              <li><span onclick="window.location.href='services.html#finance'">Оцінка бізнесу</span></li>
+            </ul>
+          </li>
+          <li><span onclick="window.location.href='services.html#digital'">Цифрова трансформація</span></li>
+          <li><span onclick="window.location.href='services.html#change'">Управління змінами</span></li>
+          <li><span onclick="window.location.href='services.html'">Усі послуги →</span></li>
+        </ul>
+      </li>
+
+      <li><span onclick="window.location.href='index.html#projects'">Проєкти</span></li>
+      <li><span onclick="window.location.href='index.html#calculator'">Калькулятор</span></li>
+      <li class="nav-active"><span>Контакти</span></li>
+
+      <li id="navAuthItem">
+        <span class="nav-auth-btn" id="navAuthBtn" onclick="window.location.href='index.html'">Увійти</span>
+      </li>
+      <li id="navUserItem" style="display:none;">
+        <div class="user-badge" id="userBadge">
+          <div class="avatar" id="userAvatar">—</div>
+          <span id="userNameLabel">—</span>
+          <span class="logout-btn" id="logoutBtn">Вийти</span>
+        </div>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <p class="eyebrow">Контакти</p>
+    <h1>Поговоримо про ваш бізнес</h1>
+    <p>Заповніть форму або напишіть нам напряму. Відповідаємо протягом одного робочого дня.</p>
+  </section>
+
+  <!-- Двоколонний блок -->
+  <div class="contacts-wrap">
+
+    <!-- Ліва: реквізити -->
+    <aside class="c-info">
+      <h2>Зв'яжіться</h2>
+
+      <div class="info-block">
+        <span class="info-label">Email</span>
+        <span onclick="window.location.href='mailto:hello@pragma.ua'">hello@pragma.ua</span>
+      </div>
+      <div class="info-block">
+        <span class="info-label">Телефон</span>
+        <span onclick="window.location.href='tel:+380441234567'">+38 (044) 123-45-67</span>
+      </div>
+
+      <div class="c-divider"></div>
+
+      <div class="info-block">
+        <span class="info-label">Адреса</span>
+        <p>вул. Хрещатик, 22, офіс 5<br>Київ, 01001</p>
+      </div>
+
+      <div class="c-divider"></div>
+
+      <dl class="hours">
+        <dt>Робочі дні</dt>
+        <dd>Пн — Пт: 9:00 – 18:00</dd>
+        <dt>Вихідні</dt>
+        <dd>Сб — Нд: вихідний</dd>
+      </dl>
+
+      <div class="c-divider"></div>
+
+      <div class="info-block">
+        <span class="info-label">Соцмережі</span>
+        <span onclick="window.open('#','_blank')">LinkedIn</span>
+        <span onclick="window.open('#','_blank')">Facebook</span>
+        <span onclick="window.open('#','_blank')">Telegram</span>
+      </div>
+    </aside>
+
+    <!-- Права: форма -->
+    <div class="c-form-wrap">
+      <h2>Напишіть нам</h2>
+
+      <form class="c-form" id="contactForm" novalidate>
+
+        <div class="f-row">
+          <div class="field">
+            <label for="cf-name">Ім'я та прізвище *</label>
+            <input type="text" id="cf-name" name="name" placeholder="Іван Петренко" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="cf-company">Компанія</label>
+            <input type="text" id="cf-company" name="company" placeholder="ТОВ «Назва»" autocomplete="organization" />
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="field">
+            <label for="cf-email">Email *</label>
+            <input type="email" id="cf-email" name="email" placeholder="ivan@company.ua" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="cf-phone">Телефон</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="+38 (050) 000-00-00" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cf-service">Напрям консалтингу</label>
+          <select id="cf-service" name="service">
+            <option value="" disabled selected>Оберіть послугу</option>
+            <option value="strategy">Стратегічний консалтинг</option>
+            <option value="finance">Фінансовий консалтинг</option>
+            <option value="digital">Цифрова трансформація</option>
+            <option value="change">Управління змінами</option>
+            <option value="operations">Операційна ефективність</option>
+            <option value="hr">HR-консалтинг</option>
+            <option value="other">Інше</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="cf-message">Повідомлення *</label>
+          <textarea id="cf-message" name="message" placeholder="Опишіть ваше завдання..." required></textarea>
+        </div>
+
+        <label class="field-check">
+          <input type="checkbox" name="consent" id="cf-consent" required />
+          <span>Погоджуюсь з політикою конфіденційності та даю згоду на обробку персональних даних.</span>
+        </label>
+
+        <div class="form-bottom">
+          <button type="submit" class="btn"><span>Надіслати</span></button>
+          <p id="formSuccess" role="status" aria-live="polite">Дякуємо! Зв'яжемось з вами найближчим часом.</p>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Адреса -->
+  <section class="address-section">
+    <h2>Де знайти нас</h2>
+    <div class="address-map" role="img" aria-label="Карта офісу Pragma у Києві">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+        <circle cx="12" cy="9" r="2.5"/>
+      </svg>
+      <span>вул. Хрещатик, 22 — Київ, 01001</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>&copy; 2025 Pragma. Всі права захищено.</p>
+</footer>
+
+<script>
+  /* ── Підменю ── */
+  document.querySelectorAll('.has-sub').forEach(function(item) {
+    var sub = item.querySelector('.submenu');
+    if (!sub) return;
+    item.addEventListener('mouseenter', function() {
+      item.parentElement.querySelectorAll('.has-sub > .submenu.open').forEach(function(s) {
+        if (s !== sub) s.classList.remove('open');
+      });
+      sub.style.display = 'block';
+      requestAnimationFrame(function() { sub.classList.add('open'); });
+    });
+    item.addEventListener('mouseleave', function() {
+      sub.classList.remove('open');
+      setTimeout(function() {
+        if (!sub.classList.contains('open')) sub.style.display = 'none';
+      }, 240);
+    });
+  });
+
+  /* ── Сесія ── */
+  (function() {
+    var s = JSON.parse(localStorage.getItem('pragmaUser') || 'null');
+    if (!s) return;
+    var ai = document.getElementById('navAuthItem');
+    var ui = document.getElementById('navUserItem');
+    if (ai) ai.style.display = 'none';
+    if (ui) ui.style.display = 'list-item';
+    var av = document.getElementById('userAvatar');
+    var nl = document.getElementById('userNameLabel');
+    if (av) av.textContent = (s.firstName||'?')[0].toUpperCase()+(s.lastName||'')[0].toUpperCase();
+    if (nl) nl.textContent = s.firstName + (s.lastName ? ' '+s.lastName : '');
+  })();
+
+  var lb = document.getElementById('logoutBtn');
+  if (lb) lb.onclick = function() {
+    document.getElementById('navAuthItem').style.display = 'list-item';
+    document.getElementById('navUserItem').style.display = 'none';
+  };
+
+  /* ── Форма ── */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name    = document.getElementById('cf-name').value.trim();
+    var email   = document.getElementById('cf-email').value.trim();
+    var message = document.getElementById('cf-message').value.trim();
+    var consent = document.getElementById('cf-consent').checked;
+    if (!name || !email || !message || !consent) {
+      alert("Заповніть обов'язкові поля та надайте згоду.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Введіть коректний email.');
+      return;
+    }
+    console.log('Форма:', { name: name, email: email,
+      company: document.getElementById('cf-company').value.trim(),
+      phone:   document.getElementById('cf-phone').value.trim(),
+      service: document.getElementById('cf-service').value,
+      message: message });
+    var ok = document.getElementById('formSuccess');
+    ok.style.display = 'block';
+    this.reset();
+    setTimeout(function(){ ok.style.display = 'none'; }, 6000);
+  });
+</script>
+
+</body>
+</html>
